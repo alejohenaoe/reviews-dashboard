@@ -21,13 +21,13 @@ function EmptyState() {
   )
 }
 
-export default function ReviewList({ reviews }) {
+export default function ReviewList({ reviews, onDraftResponse }) {
   if (reviews.length === 0) return <EmptyState />
 
   return (
     <div className="space-y-3">
       {reviews.map((review) => (
-        <ReviewCard key={review.id} review={review} />
+        <ReviewCard key={review.id} review={review} onDraftResponse={onDraftResponse} />
       ))}
     </div>
   )

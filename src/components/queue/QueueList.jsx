@@ -21,14 +21,14 @@ function EmptyState() {
   )
 }
 
-export default function QueueList({ queue }) {
+export default function QueueList({ queue, onDraftResponse }) {
   if (queue.length === 0) return <EmptyState />
 
   return (
     <div className="space-y-3">
       <p className="text-sm text-gray-500">{queue.length} unanswered review{queue.length !== 1 ? 's' : ''}</p>
       {queue.map(({ review, score }) => (
-        <QueueItem key={review.id} review={review} score={score} />
+        <QueueItem key={review.id} review={review} score={score} onDraftResponse={onDraftResponse} />
       ))}
     </div>
   )
