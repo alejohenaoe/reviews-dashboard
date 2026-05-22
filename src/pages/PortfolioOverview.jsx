@@ -3,6 +3,7 @@ import { useReviews } from '../state/useReviews.js'
 import { portfolioStats } from '../metrics/portfolioStats.js'
 import KpiCard from '../components/overview/KpiCard.jsx'
 import RatingTrendChart from '../components/overview/RatingTrendChart.jsx'
+import PortfolioInsights from '../components/overview/PortfolioInsights.jsx'
 
 export default function PortfolioOverview() {
   const { filteredReviews } = useReviews()
@@ -29,6 +30,7 @@ export default function PortfolioOverview() {
         />
       </div>
       <RatingTrendChart reviews={filteredReviews} />
+      <PortfolioInsights />
     </div>
   )
 }

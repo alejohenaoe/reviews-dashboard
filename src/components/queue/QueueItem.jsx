@@ -9,7 +9,7 @@ function excerpt(text, max = 160) {
   return text.slice(0, max).trimEnd() + '…'
 }
 
-export default function QueueItem({ review, score }) {
+export default function QueueItem({ review, score, onDraftResponse }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5">
       <div className="flex items-start gap-4">
@@ -58,9 +58,8 @@ export default function QueueItem({ review, score }) {
 
         <button
           type="button"
-          disabled
-          title="Response workflow coming soon"
-          className="shrink-0 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-400 cursor-not-allowed"
+          onClick={() => onDraftResponse?.(review)}
+          className="shrink-0 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100 transition-colors"
         >
           Respond
         </button>

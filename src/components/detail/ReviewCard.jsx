@@ -1,3 +1,5 @@
+import VibeScore from '../ai/VibeScore.jsx'
+
 function formatDate(date) {
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) return '—'
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
@@ -15,7 +17,7 @@ function StarRating({ rating }) {
   )
 }
 
-export default function ReviewCard({ review }) {
+export default function ReviewCard({ review, onDraftResponse }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 space-y-3">
       <div className="flex flex-wrap items-center gap-2">
@@ -50,6 +52,18 @@ export default function ReviewCard({ review }) {
         <p className="text-sm text-gray-700 leading-relaxed">{review.reviewText}</p>
       ) : (
         <p className="text-sm text-gray-400 italic">No review text provided.</p>
+      )}
+
+      <VibeScore review={review} />
+
+      {onDraftResponse && !review.hasResponse && (
+        <button
+          type="button"
+          onClick={() => onDraftResponse(review)}
+          className="text-xs text-indigo-600 hover:text-indigo-800 underline"
+        >
+          Draft response
+        </button>
       )}
     </div>
   )
