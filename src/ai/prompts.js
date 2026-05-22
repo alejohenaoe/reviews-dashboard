@@ -92,7 +92,7 @@ Numeric rating given: ${review.rating ?? 'none'}
 Review language: ${review.language ?? 'unknown'}
 
 Return ONLY a valid JSON object with exactly these fields:
-- "vibeScore": integer from 1 (very negative) to 10 (very positive) based solely on the text sentiment
+- "vibeScore": integer from 1 (very negative) to 5 (very positive) based solely on the text sentiment — use the same 1–5 scale as the numeric star rating so both can be compared directly
 - "vibeLabel": short label describing the emotional tone (e.g. "Frustrated", "Delighted", "Neutral")
 - "mismatch": boolean — true if the text sentiment and the numeric rating appear to disagree significantly
 - "mismatchNote": short English explanation of the mismatch (string) — include only when mismatch is true, omit otherwise

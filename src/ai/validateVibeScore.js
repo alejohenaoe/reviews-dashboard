@@ -19,8 +19,8 @@ export function validateVibeScore(rawResponse) {
 
   const { vibeScore, vibeLabel, mismatch, mismatchNote, dominantEmotion } = parsed
 
-  if (!Number.isInteger(vibeScore) || vibeScore < 1 || vibeScore > 10) {
-    throw `"vibeScore" must be an integer between 1 and 10, got: ${vibeScore}`
+  if (!Number.isInteger(vibeScore) || vibeScore < 1 || vibeScore > 5) {
+    throw `"vibeScore" must be an integer between 1 and 5, got: ${vibeScore}`
   }
   if (typeof vibeLabel !== 'string' || vibeLabel.trim() === '') {
     throw '"vibeLabel" must be a non-empty string.'
