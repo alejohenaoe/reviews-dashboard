@@ -1,14 +1,16 @@
+import { useMemo } from 'react'
+import { useReviews } from '../state/useReviews.js'
+import { propertySummaries } from '../metrics/propertySummary.js'
+import PropertyTable from '../components/properties/PropertyTable.jsx'
+
 export default function Properties() {
+  const { filteredReviews } = useReviews()
+  const summaries = useMemo(() => propertySummaries(filteredReviews), [filteredReviews])
+
   return (
-    <div className="max-w-5xl">
-      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
-        <svg className="mx-auto mb-3 h-10 w-10 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-        <p className="text-sm font-medium text-gray-500">Properties</p>
-        <p className="mt-1 text-xs text-gray-400">Property list coming in the next phase.</p>
-      </div>
+    <div className="max-w-7xl space-y-4">
+      <p className="text-sm text-gray-500">{summaries.length} properties</p>
+      <PropertyTable summaries={summaries} />
     </div>
   )
 }
