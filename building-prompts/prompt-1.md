@@ -5,14 +5,14 @@ Implement the data layer and global application state for this phase.
 Create only the folders and files needed for this phase if they do not already exist.
 
 Build:
-- CSV loading from public/data/reviews.csv
+- CSV loading from public/data/guest_reviews.csv
 - Row normalization into a consistent Review shape
 - Pure metrics functions
 - Priority scoring logic for unanswered reviews
 - Global context state for reviews, filters, loading, error, and selected property
 
 Functional requirements:
-1. Parse the CSV from public/data/reviews.csv.
+1. Parse the CSV from public/data/guest_reviews.csv.
 2. Normalize every row into this Review shape:
    {
      id: string,
