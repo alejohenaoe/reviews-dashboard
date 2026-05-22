@@ -1,16 +1,34 @@
+import { useMemo } from 'react'
+import { useReviews } from '../state/useReviews.js'
+import { portfolioStats } from '../metrics/portfolioStats.js'
+import KpiCard from '../components/overview/KpiCard.jsx'
+import RatingTrendChart from '../components/overview/RatingTrendChart.jsx'
+
 export default function PortfolioOverview() {
+  const { filteredReviews } = useReviews()
+  const stats = useMemo(() => portfolioStats(filteredReviews), [filteredReviews])
+
   return (
-    <div className="max-w-5xl">
-      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
-        <svg className="mx-auto mb-3 h-10 w-10 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="7" height="7" />
-          <rect x="14" y="3" width="7" height="7" />
-          <rect x="3" y="14" width="7" height="7" />
-          <rect x="14" y="14" width="7" height="7" />
-        </svg>
-        <p className="text-sm font-medium text-gray-500">Portfolio Overview</p>
-        <p className="mt-1 text-xs text-gray-400">Analytics coming in the next phase.</p>
+    <div className="max-w-5xl space-y-6">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <KpiCard label="Total Reviews" value={stats.totalReviews.toLocaleString()} />
+        <KpiCard
+          label="Average Rating"
+          value={stats.averageRating !== null ? `${stats.averageRating.toFixed(2)} ★` : '—'}
+          accent="text-indigo-600"
+        />
+        <KpiCard
+          label="Response Rate"
+          value={`${(stats.responseRate * 100).toFixed(1)}%`}
+          sub={`${stats.unanswered} unanswered`}
+        />
+        <KpiCard
+          label="Unanswered"
+          value={stats.unanswered.toLocaleString()}
+          accent={stats.unanswered > 0 ? 'text-amber-600' : 'text-gray-900'}
+        />
       </div>
+      <RatingTrendChart reviews={filteredReviews} />
     </div>
   )
 }

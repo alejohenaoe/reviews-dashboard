@@ -13,3 +13,4 @@ Rules:
 - Keep styling consistent with the existing design system.
 - Prefer composition over deeply nested conditional logic.
 - Do not introduce abstractions unless they are reused or clearly reduce complexity.
+- Name of all variables, functions, or components should clearly indicate their purpose and usage.
