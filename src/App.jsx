@@ -1,20 +1,19 @@
-import { useReviews } from './state/useReviews.js'
+import { Routes, Route } from 'react-router-dom'
+import Shell from './components/layout/Shell.jsx'
+import PortfolioOverview from './pages/PortfolioOverview.jsx'
+import Properties from './pages/Properties.jsx'
+import PropertyDetail from './pages/PropertyDetail.jsx'
+import UnansweredQueue from './pages/UnansweredQueue.jsx'
 
-function App() {
-  const { isLoading, error, reviews, filteredReviews, loadedAt } = useReviews()
-
-  if (isLoading) return <p>Loading reviews…</p>
-  if (error) return <p>Error: {error}</p>
-
+export default function App() {
   return (
-    <main>
-      <h1>Reviews dashboard</h1>
-      <p>
-        {filteredReviews.length} of {reviews.length} reviews shown
-        {loadedAt ? ` · loaded ${loadedAt.toISOString()}` : null}
-      </p>
-    </main>
+    <Routes>
+      <Route element={<Shell />}>
+        <Route index element={<PortfolioOverview />} />
+        <Route path="properties" element={<Properties />} />
+        <Route path="property/:id" element={<PropertyDetail />} />
+        <Route path="queue" element={<UnansweredQueue />} />
+      </Route>
+    </Routes>
   )
 }
-
-export default App
